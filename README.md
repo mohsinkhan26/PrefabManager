@@ -31,15 +31,15 @@ In Unity projects, programmers have to instantiate and destroy various GameObjec
 * Add respective prefab reference in PrefabManager.prefab
 * Now, just drag PrefabManager.prefab to hierarchy view and call its public functions
 
-![HowToUse-01.png](https://bytebucket.org/unbounded-eagle/prefab_manager/raw/64552c4af65ebcfcbabad4bb1cf8dc012acd3776/Screenshots/HowToUse-01.png)
+![HowToUse-01.png](https://github.com/mohsinkhan26/PrefabManager/blob/Development/Screenshots/HowToUse-01.png)
 
-![HowToUse-02.png](https://bytebucket.org/unbounded-eagle/prefab_manager/raw/64552c4af65ebcfcbabad4bb1cf8dc012acd3776/Screenshots/HowToUse-02.png)
+![HowToUse-02.png](https://github.com/mohsinkhan26/PrefabManager/blob/Development/Screenshots/HowToUse-02.png)
 
-![HowToUse-03.png](https://bytebucket.org/unbounded-eagle/prefab_manager/raw/64552c4af65ebcfcbabad4bb1cf8dc012acd3776/Screenshots/HowToUse-03.png)
+![HowToUse-03.png](https://github.com/mohsinkhan26/PrefabManager/blob/Development/Screenshots/HowToUse-03.png)
 
-![HowToUse-04.png](https://bytebucket.org/unbounded-eagle/prefab_manager/raw/64552c4af65ebcfcbabad4bb1cf8dc012acd3776/Screenshots/HowToUse-04.png)
+![HowToUse-04.png](https://github.com/mohsinkhan26/PrefabManager/blob/Development/Screenshots/HowToUse-04.png)
 
-![HowToUse-05.png](https://bytebucket.org/unbounded-eagle/prefab_manager/raw/64552c4af65ebcfcbabad4bb1cf8dc012acd3776/Screenshots/HowToUse-05.png)
+![HowToUse-05.png](https://github.com/mohsinkhan26/PrefabManager/blob/Development/Screenshots/HowToUse-05.png)
 
 ### Remember ###
 * Drag PrefabManager.prefab in the first scene and it will persist

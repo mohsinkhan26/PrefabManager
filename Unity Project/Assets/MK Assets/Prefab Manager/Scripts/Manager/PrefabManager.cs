@@ -16,10 +16,12 @@ namespace MK.Prefab.Manager
     public sealed class PrefabManager : Singleton<PrefabManager>
     {
         [SerializeField]
-        List<PrefabData> prefabsData = new List<PrefabData>();
+        List<PrefabData>
+            prefabsData = new List<PrefabData>();
 
         [SerializeField]
-        StartupPoolMode startupPoolMode;
+        StartupPoolMode
+            startupPoolMode;
         bool startupPoolsCreated = false;
         Dictionary<PrefabType, PoolData> pooledObjects = new Dictionary<PrefabType, PoolData>();
 
@@ -50,8 +52,8 @@ namespace MK.Prefab.Manager
                 startupPoolsCreated = true;
                 for (int i = prefabsData.Count - 1; i >= 0; --i)
                 {
-                    if (prefabsData[i].prefab != null && prefabsData[i].initialPoolSize > 0)
-                        CreatePool(prefabsData[i].prefabType, prefabsData[i].initialPoolSize, prefabsData[i].prefab);
+                    if (prefabsData [i].prefab != null && prefabsData [i].initialPoolSize > 0)
+                        CreatePool(prefabsData [i].prefabType, prefabsData [i].initialPoolSize, prefabsData [i].prefab);
                 }
             }
         }
@@ -196,16 +198,16 @@ namespace MK.Prefab.Manager
         {
             for (int i = pooledObjects.Keys.Count - 1; i >= 0; --i)
             {
-                PrefabType prefabType = pooledObjects.Keys.ToList()[i];
-                if (pooledObjects[prefabType].pooledObjects.Contains(_gameObject))
+                PrefabType prefabType = pooledObjects.Keys.ToList() [i];
+                if (pooledObjects [prefabType].pooledObjects.Contains(_gameObject))
                 {
-                    int j = pooledObjects[prefabType].pooledObjects.IndexOf(_gameObject);
+                    int j = pooledObjects [prefabType].pooledObjects.IndexOf(_gameObject);
                     //for (int j = pooledObjects[prefabType].pooledObjects.Count - 1; j >= 0; --j){
                     //if (pooledObjects[prefabType].pooledObjects[j].Equals(_gameObject))
-                    if (pooledObjects[prefabType].pooledObjects[j].Equals(_gameObject))
+                    if (pooledObjects [prefabType].pooledObjects [j].Equals(_gameObject))
                     {
-                        pooledObjects[prefabType].pooledObjects[j].transform.SetParent(pooledObjects[prefabType].poolParent, false);
-                        pooledObjects[prefabType].pooledObjects[j].SetActive(false);
+                        pooledObjects [prefabType].pooledObjects [j].SetActive(false); // disabling before re-parenting, will improve performance
+                        pooledObjects [prefabType].pooledObjects [j].transform.SetParent(pooledObjects [prefabType].poolParent, false);
                         return;
                     }
                     //}
@@ -224,8 +226,8 @@ namespace MK.Prefab.Manager
         {
             for (int i = pooledObjects[_prefabType].pooledObjects.Count - 1; i >= 0; --i)
             {
-                pooledObjects[_prefabType].pooledObjects[i].transform.SetParent(pooledObjects[_prefabType].poolParent, false);
-                pooledObjects[_prefabType].pooledObjects[i].SetActive(false);
+                pooledObjects [_prefabType].pooledObjects [i].SetActive(false); // disabling before re-parenting, will improve performance
+                pooledObjects [_prefabType].pooledObjects [i].transform.SetParent(pooledObjects [_prefabType].poolParent, false);
             }
         }
 
@@ -246,7 +248,7 @@ namespace MK.Prefab.Manager
         public int CountActivePooled(PrefabType _prefabType)
         {
             if (pooledObjects.ContainsKey(_prefabType))
-                return pooledObjects[_prefabType].pooledObjects.Count(go => go.activeInHierarchy);
+                return pooledObjects [_prefabType].pooledObjects.Count(go => go.activeInHierarchy);
             return 0;
         }
 
@@ -270,7 +272,7 @@ namespace MK.Prefab.Manager
         public int CountPooled(PrefabType _prefabType)
         {
             if (pooledObjects.ContainsKey(_prefabType))
-                return pooledObjects[_prefabType].pooledObjects.Count;
+                return pooledObjects [_prefabType].pooledObjects.Count;
             return 0;
         }
 
@@ -282,7 +284,7 @@ namespace MK.Prefab.Manager
         {
             int count = 0;
             for (int i = pooledObjects.Keys.Count - 1; i >= 0; --i)
-                count += pooledObjects[pooledObjects.Keys.ElementAt(i)].pooledObjects.Count;
+                count += pooledObjects [pooledObjects.Keys.ElementAt(i)].pooledObjects.Count;
             return count;
         }
 
@@ -301,8 +303,8 @@ namespace MK.Prefab.Manager
         /// <param name="_prefabType">Prefab type.</param>
         public void DestroyAll(PrefabType _prefabType)
         {
-            DestroyPooled(_prefabType, pooledObjects[_prefabType].pooledObjects.Count);
-            pooledObjects[_prefabType].pooledObjects.Clear();
+            DestroyPooled(_prefabType, pooledObjects [_prefabType].pooledObjects.Count);
+            pooledObjects [_prefabType].pooledObjects.Clear();
         }
 
         /// <summary>
@@ -312,10 +314,10 @@ namespace MK.Prefab.Manager
         /// <param name="_howMany">How many.</param>
         public void DestroyPooled(PrefabType _prefabType, int _howMany)
         {
-            _howMany = (pooledObjects[_prefabType].pooledObjects.Count >= _howMany) ? _howMany : pooledObjects[_prefabType].pooledObjects.Count;
+            _howMany = (pooledObjects [_prefabType].pooledObjects.Count >= _howMany) ? _howMany : pooledObjects [_prefabType].pooledObjects.Count;
             for (int i = _howMany - 1; i >= 0; --i)
             {
-                Destroy(pooledObjects[_prefabType].pooledObjects[i]);
+                Destroy(pooledObjects [_prefabType].pooledObjects [i]);
             }
         }
 
@@ -334,9 +336,8 @@ namespace MK.Prefab.Manager
             if (pooledObjects.ContainsKey(_prefabType))
             {
                 for (int i = _howMany - 1; i >= 0; --i)
-                    pooledObjects[_prefabType].pooledObjects.Add(InstantiateGameObject(_prefab, pooledObjects[_prefabType].poolParent));
-            }
-            else
+                    pooledObjects [_prefabType].pooledObjects.Add(InstantiateGameObject(_prefab, pooledObjects [_prefabType].poolParent));
+            } else
             {
                 // making a heirarchy/structured pooling under the prefab type
                 GameObject gObject = InstantiateGameObject(_prefab, transform, Vector3.zero, Quaternion.identity, false, _prefabType.ToString(), true);
@@ -364,18 +365,18 @@ namespace MK.Prefab.Manager
                                          bool _setActive = false, string _gameObjectName = "", bool _emptyGameObject = false)
         {
             GameObject gObject = _emptyGameObject ? new GameObject() : GameObject.Instantiate(_prefab);
+            gObject.SetActive(false); // disabling before re-parenting, will improve performance
             if (_parent != null)
                 gObject.transform.SetParent(_parent, false);
             gObject.transform.localPosition = _position;
             gObject.transform.localRotation = _rotation;
-            gObject.SetActive(_setActive);
             if (string.IsNullOrEmpty(_gameObjectName))
             { // default name of instantiated GameObject would be same as the prefab name with postfix "(Clone)"
-            }
-            else
+            } else
             {
                 gObject.name = _gameObjectName;
             }
+            gObject.SetActive(_setActive);
             return gObject;
         }
 
@@ -425,31 +426,30 @@ namespace MK.Prefab.Manager
         /// <param name="_rotation">Rotation.</param>
         GameObject GetActiveGameObject(PrefabType _prefabType, Transform _parent, Vector3 _position, Quaternion _rotation)
         {
-            if (pooledObjects[_prefabType].pooledObjects.Count == 0 ||
-                pooledObjects[_prefabType].pooledObjects.Where(pObject => !pObject.gameObject.activeInHierarchy).ToList().Count == 0 ||
-                pooledObjects[_prefabType].pooledObjects.Where(poolObject => !poolObject.gameObject.activeInHierarchy && poolObject.name.Equals(GetPrefab(_prefabType).name + "(Clone)")).ToList().Count == 0)
+            if (pooledObjects [_prefabType].pooledObjects.Count == 0 ||
+                pooledObjects [_prefabType].pooledObjects.Where(pObject => !pObject.gameObject.activeInHierarchy).ToList().Count == 0 ||
+                pooledObjects [_prefabType].pooledObjects.Where(poolObject => !poolObject.gameObject.activeInHierarchy && poolObject.name.Equals(GetPrefab(_prefabType).name + "(Clone)")).ToList().Count == 0)
             {
                 if (prefabsData.FirstOrDefault(pData => pData.prefabType == _prefabType).autoScale)
                 { // allowed to auto-scale this specific pool
                     GameObject gObject = InstantiateGameObject(GetPrefab(_prefabType), _parent, _position, _rotation, true);
                     gObject.transform.localPosition = _position;
                     gObject.transform.localRotation = _rotation;
-                    pooledObjects[_prefabType].pooledObjects.Add(gObject);
+                    pooledObjects [_prefabType].pooledObjects.Add(gObject);
                     return gObject;
                 }
                 throw new ArgumentOutOfRangeException("PrefabManager-You are not allowning to auto-scale the pool of " + _prefabType + " in the 'prefabsData' list. \nJust tick auto-scale the pool of '" + _prefabType + "' in the 'prefabsData' list, it will work fine\n");
-            }
-            else
+            } else
             {
                 //GameObject gObject = pooledObjects[_prefabType].pooledObjects.FirstOrDefault(item => !item.gameObject.activeInHierarchy && item.name.Equals(_prefabType.ToString() + "(Clone)"));
-                GameObject gObject = pooledObjects[_prefabType].pooledObjects.FirstOrDefault(item => !item.gameObject.activeInHierarchy);
+                GameObject gObject = pooledObjects [_prefabType].pooledObjects.FirstOrDefault(item => !item.gameObject.activeInHierarchy);
                 gObject.transform.localPosition = _position;
                 gObject.transform.localRotation = _rotation;
-                gObject.gameObject.SetActive(true);
                 if (_parent == null)
                     gObject.transform.parent = null;
                 else
                     gObject.transform.SetParent(_parent, false);
+                gObject.gameObject.SetActive(true);
                 return gObject;
             }
         }

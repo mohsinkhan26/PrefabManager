@@ -1,4 +1,4 @@
-		Overview Prefab Manager
+﻿		Overview Prefab Manager
 
 —————— Introduction —————— 
 Thanks for downloading this package stay tuned this is just the beginning or you may call it proof of concept more features are in the queue.
@@ -17,7 +17,7 @@ https://www.assetstore.unity3d.com/#!/content/96299
 https://github.com/mohsinkhan26/PrefabManager 
 
 —————— BitBucket Link —————— 
-https://bitbucket.org/unbounded-eagle/prefab_manager
+https://bitbucket.org/mohsinkhan26/prefab_manager
 
 —————— Blog Link —————— 
 https://cslearners.blogspot.com/2017/07/unity3d-prefab-manager.html

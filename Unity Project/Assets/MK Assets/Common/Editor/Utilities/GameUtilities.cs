@@ -2,12 +2,12 @@
  * Author : Mohsin Khan
  * LinkedIn : http://pk.linkedin.com/in/mohsinkhan26/
  * Github : https://github.com/mohsinkhan26/
- * BitBucket : https://bitbucket.org/unbounded-eagle/ 
+ * BitBucket : https://bitbucket.org/mohsinkhan26/ 
 */
 using UnityEditor;
 using UnityEngine;
 
-namespace MK.Common.Utilities
+namespace MK.Common.Miscellaneous
 {
     public static class GameUtilities
     {
@@ -26,7 +26,7 @@ namespace MK.Common.Utilities
         [MenuItem("Tools/MK Assets/BitBucket Profile", false, 50)]
         public static void CheckBitBucketProfile()
         {
-            Application.OpenURL("https://bitbucket.org/unbounded-eagle/");
+            Application.OpenURL("https://bitbucket.org/mohsinkhan26/");
         }
 
         [MenuItem("Tools/MK Assets/OpenScene/Prefab Manager - Demo Scene")]

@@ -2,17 +2,16 @@
  * Author : Mohsin Khan
  * LinkedIn : http://pk.linkedin.com/in/mohsinkhan26/
  * Github : https://github.com/mohsinkhan26/
- * BitBucket : https://bitbucket.org/unbounded-eagle/ 
+ * BitBucket : https://bitbucket.org/mohsinkhan26/ 
 */
 using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
-using MK.Prefab.Manager;
 
-namespace MK.Manager
+namespace MK.Prefab.API
 {
-    [CustomEditor(typeof(PrefabManager))]
-    public class PrefabManagerEditor : Editor
+    [CustomEditor(typeof(PrefabData))]
+    public class PrefabDataEditor : Editor
     {
         SerializedProperty m_StartupPoolMode;
 
@@ -23,7 +22,7 @@ namespace MK.Manager
         {
             m_StartupPoolMode = serializedObject.FindProperty("startupPoolMode");
 
-            prefabsDataList = new ReorderableList(serializedObject, serializedObject.FindProperty("prefabsData"), true, true, true, true);
+            prefabsDataList = new ReorderableList(serializedObject, serializedObject.FindProperty("prefabsDetail"), true, true, true, true);
             prefabsDataList.elementHeight = 70f;
 
             prefabsDataList.drawHeaderCallback = (Rect rect) =>

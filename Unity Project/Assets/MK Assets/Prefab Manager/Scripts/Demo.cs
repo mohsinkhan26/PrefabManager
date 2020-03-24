@@ -2,7 +2,7 @@
  * Author : Mohsin Khan
  * LinkedIn : http://pk.linkedin.com/in/mohsinkhan26/
  * Github : https://github.com/mohsinkhan26/
- * BitBucket : https://bitbucket.org/unbounded-eagle/ 
+ * BitBucket : https://bitbucket.org/mohsinkhan26/ 
 */
 using UnityEngine;
 using MK.Prefab.Manager;
@@ -12,8 +12,7 @@ namespace MK.Prefab
 {
     public class Demo : MonoBehaviour
     {
-        [SerializeField]
-        Vector3 positionToSpawn;
+        [SerializeField] Vector3 positionToSpawn;
 
         // Update is called once per frame
         void Update()

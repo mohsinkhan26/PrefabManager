@@ -11,7 +11,7 @@ As, instantiating and destroying calls are really expensive at runtime. So, due 
 In Unity projects, programmers have to instantiate and destroy various GameObjects at runtime like enemies, particles, powerups, health boxes etc. So, it is better to pool them and recycle them.
 
 —————— Unity Asset Store Link —————— 
-https://www.assetstore.unity3d.com/#!/content/96299 
+http://u3d.as/UkT 
 
 —————— GitHub Link —————— 
 https://github.com/mohsinkhan26/PrefabManager 

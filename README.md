@@ -10,7 +10,7 @@ In Unity projects, programmers have to instantiate and destroy various GameObjec
 
 ### Unity Asset Store Link ###
 
-[https://www.assetstore.unity3d.com/#!/content/96299](https://www.assetstore.unity3d.com/#!/content/96299)
+[http://u3d.as/UkT](http://u3d.as/UkT)
 
 ### Features ###
 * Easily pool GameObjects in your game
